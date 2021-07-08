@@ -1,13 +1,13 @@
 import { GetStaticProps } from 'next'
 import Main from 'components/Main'
 
-export type Pokemon = {
+export type PokemonProps = {
   name: string
   url: string
 }
 
 type Props = {
-  data: Pokemon[]
+  data: PokemonProps[]
 }
 
 export default function Home({ data }: Props) {

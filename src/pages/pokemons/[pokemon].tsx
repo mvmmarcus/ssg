@@ -1,7 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
-import { Pokemon as PokemonProps } from 'pages'
 import Pokemon from 'components/Pokemon'
+import { PokemonProps } from '.'
 
 type Props = {
   data: PokemonProps
