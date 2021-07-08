@@ -9,10 +9,11 @@ const GlobalStyles = createGlobalStyle`
 
   html {
     font-size: 62.5%;
+    height: 100%;
   }
 
-  html, body, #__next {
-    height: 100%;
+  body, #__next {
+    min-height: 100vh;
   }
 
   body {
