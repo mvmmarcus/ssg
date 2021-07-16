@@ -26,8 +26,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon`)
   const data = await response.json()
 
-  const paths = data.results.map((item) => {
-    return { params: { slug: item.name } }
+  const paths = data?.results?.slice(0, 10)?.map((item) => {
+    return { params: { pokemon: item.name } }
   })
 
   return {
@@ -37,9 +37,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const { slug } = context.params
+  const { pokemon } = context.params
 
-  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${slug}`)
+  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
   const data = await response.json()
 
   return {

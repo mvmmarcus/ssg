@@ -14,6 +14,11 @@ export const Wrapper = styled.main`
 
   a {
     color: #fff;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   img {

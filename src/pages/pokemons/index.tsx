@@ -6,12 +6,11 @@ import Main from 'components/Main'
 export default function Pokemons({ data }) {
   return (
     <Main>
-      {data.map((item, index) => {
+      {data?.slice(0, 10)?.map((item) => {
         return (
-          <h1 key={item.name}>
-            {index + 1}{' '}
-            <Link href={`/pokemons/${item.name}`}>
-              <a>{item.name}</a>
+          <h1 key={item?.name}>
+            <Link href={`/pokemons/${item?.name}`}>
+              <a>{item?.name}</a>
             </Link>
           </h1>
         )
@@ -26,7 +25,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      data: data.results
+      data: data?.results
     }
   }
 }
