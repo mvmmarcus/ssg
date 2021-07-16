@@ -24,12 +24,15 @@ export default function Pokemons({ data }) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const response = await fetch('http://localhost:1337/characters')
+  const response = await fetch(
+    'http://localhost:1337/characters?_limit=10&_sort=created_at:ASC'
+  )
   const data = await response.json()
 
   return {
     props: {
       data: data
-    }
+    },
+    revalidate: 10
   }
 }

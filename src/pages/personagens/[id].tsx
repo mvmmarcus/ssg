@@ -9,7 +9,7 @@ export default function PokemonPage({ data }) {
   if (isFallback) {
     return (
       <Main>
-        <h1>Carregando as informações do pokemon...</h1>
+        <h1>Carregando as informações do personagem...</h1>
       </Main>
     )
   }
@@ -23,7 +23,9 @@ export default function PokemonPage({ data }) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const response = await fetch(`http://localhost:1337/characters`)
+  const response = await fetch(
+    `http://localhost:1337/characters?_limit=10&_sort=created_at:ASC`
+  )
   const data = await response.json()
 
   const paths = data?.map((item) => {
@@ -48,6 +50,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
         name: data.name,
         photo: `http://localhost:1337${data.photo.url}`
       }
-    }
+    },
+    revalidate: 10
   }
 }
