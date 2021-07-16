@@ -16,18 +16,18 @@ export default function PokemonPage({ data }) {
 
   return (
     <Main>
-      <img src={data.imgUrl} alt={data.name} loading="lazy" />
+      <img src={data.photo} alt={data.name} loading="lazy" />
       <h1>{data.name}</h1>
     </Main>
   )
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const response = await fetch(`https://pokeapi.co/api/v2/pokemon`)
+  const response = await fetch(`http://localhost:1337/characters`)
   const data = await response.json()
 
-  const paths = data?.results?.slice(0, 10)?.map((item) => {
-    return { params: { pokemon: item.name } }
+  const paths = data?.map((item) => {
+    return { params: { id: item.id.toString() } }
   })
 
   return {
@@ -37,16 +37,16 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const { pokemon } = context.params
+  const { id } = context.params
 
-  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
+  const response = await fetch(`http://localhost:1337/characters/${id}`)
   const data = await response.json()
 
   return {
     props: {
       data: {
         name: data.name,
-        imgUrl: data.sprites.front_default
+        photo: `http://localhost:1337${data.photo.url}`
       }
     }
   }

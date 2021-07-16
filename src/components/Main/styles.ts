@@ -12,6 +12,14 @@ export const Wrapper = styled.main`
   align-items: center;
   justify-content: center;
 
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+  }
+
   a {
     color: #fff;
     text-decoration: none;
@@ -22,6 +30,7 @@ export const Wrapper = styled.main`
   }
 
   img {
-    width: 200px;
+    width: 400px;
+    margin-bottom: 20px;
   }
 `
